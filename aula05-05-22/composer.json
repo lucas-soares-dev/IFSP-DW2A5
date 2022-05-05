@@ -1,0 +1,17 @@
+{
+    "name": "lucas/aula05-05-22",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas Soares",
+            "email": "lucascanutosoares@gmail.com"
+        }
+    ],
+    "require": {
+        "claudsonm/cep-promise-php": "^1.1"
+    }
+}
