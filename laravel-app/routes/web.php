@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/pagina1', function () {
-    return view('pagina1', [
-        'name' => 'Lucas Canuto Soares',
-        'email' => 'lucascanutosoares@gmail.com',
+Route::get('/produtos', function () {
+    return view('products');
+});
+
+Route::get('/produto/{id}', function ($id) {
+    return view('product', [
+        'id' => $id
     ]);
 });
