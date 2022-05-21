@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'EventController@index');
+Route::get('/events/create', 'EventController@create');
+
 
 Route::get('/produtos', function () {
     return view('products');
