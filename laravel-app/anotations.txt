@@ -3,3 +3,15 @@
 -- Controllers
 
 php artisan make:controller nameController
+
+-- Migrations
+
+php artisan make:migration create_name_table  -> Criar migration
+php artisan make:migration add_column_to_nametable_table  -> Adiciona uma coluna em uma determinada tabela através de uma nova migration
+
+php artisan migrate             -> Executa as migrations
+php artisan migrate:status      
+php artisan migrate:fresh       -> Deleta todas as tabelas e cria novamente
+php artisan migrate:rollback    -> Volta a última atualização das migrations no banco de dados 
+php artisan migrate:reset       -> Remove todas as tabelas do banco de dados criadas pelas migrations
+php artisan migrate:refresh     -> Executa o rollback em todas tabelas e cria novamente
