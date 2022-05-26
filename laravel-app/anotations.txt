@@ -15,3 +15,6 @@ php artisan migrate:fresh       -> Deleta todas as tabelas e cria novamente
 php artisan migrate:rollback    -> Volta a última atualização das migrations no banco de dados 
 php artisan migrate:reset       -> Remove todas as tabelas do banco de dados criadas pelas migrations
 php artisan migrate:refresh     -> Executa o rollback em todas tabelas e cria novamente
+
+-- Eloquent
+
