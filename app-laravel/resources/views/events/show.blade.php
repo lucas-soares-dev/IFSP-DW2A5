@@ -24,6 +24,7 @@
                     <ion-icon name="star-outline"></ion-icon>
                     {{ $eventOwner->name }}
                 </p>
+                @if (!$hasUserJoined)
                 <form action="/events/join/{{ $event->id }}" method="POST">
                     @csrf
                     <a 
@@ -35,6 +36,9 @@
                         Confirmar Presença
                     </a>
                 </form>
+                @else
+                <p class="alert alert-success my-4">Você já está participando do evento!</p>
+                @endif
 
                 <h3>o evento conta com:</h3>
                 <ul class="item-list">
