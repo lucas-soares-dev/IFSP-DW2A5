@@ -66,8 +66,12 @@ class EventController extends Controller
     {
         $user = auth()->user();
         $events = $user->events;
+        $eventsAsParticipants = $user->eventsAsParticipants;
 
-        return view('events.dashboard', ['events' => $events]);
+        return view('events.dashboard', [
+            'events' => $events, 
+            'eventsasparticipant' => $eventsAsParticipants
+        ]);
     }
 
     public function destroy($id)
@@ -79,6 +83,12 @@ class EventController extends Controller
     public function edit($id)
     {
         $eventEdit = Event::findOrFail($id);
+        $user = auth()->user();
+
+        if($eventEdit->user_id != $user->id) {
+            return redirect('/dashboard');
+        }
+
         return view('events.create', ['event' => $eventEdit]);
     }
 
