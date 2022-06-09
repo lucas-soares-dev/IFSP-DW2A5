@@ -31,4 +31,9 @@ class Event extends Model
         $request->image->move(public_path('images/events'), $imageName);
         return $imageName;
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 }
