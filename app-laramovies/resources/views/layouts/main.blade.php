@@ -13,7 +13,7 @@
 <body class="bg-secondary">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
-            <div class="container-fluid">
+            <div class="container">
                 <a id="header-logo" class="navbar-brand" href="/">
                     LaraMovies
                 </a>
@@ -22,12 +22,13 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="navbar-collapse collapse col-6 justify-content-center" id="menu-items">
+                <div class="navbar-collapse collapse" id="menu-items">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a href="/" class="nav-link">HOME</a>
                         </li>
 
+                        @auth
                         <li class="nav-item">
                             <a href="/movies/create" class="nav-link">CRIAR FILME</a>
                         </li>
@@ -37,16 +38,12 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/" class="nav-link">ENTRAR</a>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button class="btn btn-" type="submit">SAIR</button>
+                            </form>
                         </li>
-
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">CADASTRAR</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">SAIR</a>
-                        </li>
+                        @endauth
                     </ul>
 
                     <form class="d-lg-none">
@@ -57,6 +54,20 @@
                 <form class="d-none d-lg-flex">
                     <input class="form-control" type="text" placeholder="Search" aria-label="Search">
                 </form>
+
+                <div class="text-end">
+                    @guest
+                    <a href="/login" class="btn btn-outline-light mx-3">Login</a>
+                    <a href="/register" class="btn btn-warning">Cadastre-se</a>
+                    @endguest
+                    
+                    @auth
+                    <form action="/logout" method="post" class="m-0 p-0">
+                        @csrf
+                        <button class="btn btn-primary ms-3" type="submit">SAIR</button>
+                    </form>
+                    @endauth
+                </div>
             </div>
         </nav>
     </header>
