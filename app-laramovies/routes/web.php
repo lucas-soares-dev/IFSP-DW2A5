@@ -15,8 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MoviesController::class, 'index']);
-Route::get('/movies/create', [MoviesController::class, 'create']);
-Route::post('/movies', [MoviesController::class, 'store']);
+
+Route::group(['middleware' => 'auth', 'prefix' => 'movies'], function() {
+    Route::get('', [MoviesController::class, 'movies']);
+    Route::get('/create', [MoviesController::class, 'create']);
+    Route::post('', [MoviesController::class, 'save']);
+    Route::get('/edit/{url}', [MoviesController::class, 'edit']);
+    Route::put('/update/{url}', [MoviesController::class, 'save']);
+    Route::delete('/delete/{url}', [MoviesController::class, 'destroy']);
+});
+
+Route::get('/movies/{url}', [MoviesController::class, 'show']);
+
+
 
 Route::middleware([
     'auth:sanctum',

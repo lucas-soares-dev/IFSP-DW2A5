@@ -11,7 +11,7 @@
     <h1>Crie o seu filme</h1>
   @endif
 
-  <form action='{{ isset($movie) ? "/movies/update/$movie->id" : "/movies" }}' method="POST">
+  <form action='{{ isset($movie) ? "/movies/update/$movie->url" : "/movies" }}' method="POST">
     @csrf
     @if (isset($movie))
       @method('PUT')
@@ -23,7 +23,7 @@
 
     <div class="form-group">
       <label for="name">Trailer</label>
-      <input type="url" class="form-control" id="city" name="link_trailer" placeholder="Link do trailer" value="{{ $movie->city ?? '' }}">
+      <input type="url" class="form-control" id="city" name="link_trailer" placeholder="Link do trailer" value="{{ $movie->link_trailer ?? '' }}">
     </div>
 
     <div class="form-group">

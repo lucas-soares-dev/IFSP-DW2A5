@@ -17,6 +17,8 @@ class Movie extends Model
         'name',
         'genres',
         'link_trailer',
-        'release_year'
+        'release_year',
+        'user_id',
+        'url'
     ];
 }
