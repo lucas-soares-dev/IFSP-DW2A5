@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MoviesController::class, 'index']);
-
 Route::group(['middleware' => 'auth', 'prefix' => 'movies'], function() {
     Route::get('', [MoviesController::class, 'movies']);
     Route::get('/create', [MoviesController::class, 'create']);
@@ -24,10 +23,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'movies'], function() {
     Route::put('/update/{url}', [MoviesController::class, 'save']);
     Route::delete('/delete/{url}', [MoviesController::class, 'destroy']);
 });
-
 Route::get('/movies/{url}', [MoviesController::class, 'show']);
-
-
 
 Route::middleware([
     'auth:sanctum',
@@ -35,6 +31,6 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return redirect('/');
     })->name('dashboard');
 });

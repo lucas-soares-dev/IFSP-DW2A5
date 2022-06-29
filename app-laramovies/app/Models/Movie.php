@@ -21,4 +21,9 @@ class Movie extends Model
         'user_id',
         'url'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

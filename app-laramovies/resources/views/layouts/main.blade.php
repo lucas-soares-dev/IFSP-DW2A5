@@ -24,10 +24,6 @@
 
                 <div class="navbar-collapse collapse" id="menu-items">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">HOME</a>
-                        </li>
-
                         @auth
                         <li class="nav-item">
                             <a href="/movies/create" class="nav-link">CRIAR FILME</a>
@@ -36,28 +32,32 @@
                         <li class="nav-item">
                             <a href="/movies" class="nav-link">MEUS FILMES</a>
                         </li>
-
-                        <li class="nav-item">
-                            <form action="/logout" method="post">
-                                @csrf
-                                <button class="btn btn-" type="submit">SAIR</button>
-                            </form>
-                        </li>
                         @endauth
                     </ul>
 
-                    <form class="d-lg-none">
-                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                    <form class="d-flex d-lg-none" method="GET" action="/">
+                        <input class="form-control" type="text" placeholder="Search" name="search">
+                        <button type="submit" class="btn btn-outline-primary ms-2">Pesquisar</button>
                     </form>
+
+                    @auth
+                    <div class="d-lg-none mt-2">
+                        <form action="/logout" method="post" class="m-0 p-0">
+                            @csrf
+                            <button class="btn btn-primary" type="submit">SAIR</button>
+                        </form>
+                    </div>
+                    @endauth
                 </div>
 
-                <form class="d-none d-lg-flex">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <form class="d-none d-lg-flex" method="GET" action="/">
+                    <input class="form-control" type="text" placeholder="Search" name="search">
+                    <button type="submit" class="btn btn-outline-primary ms-2">Pesquisar</button>
                 </form>
 
-                <div class="text-end">
+                <div class="text-end d-none d-lg-flex">
                     @guest
-                    <a href="/login" class="btn btn-outline-light mx-3">Login</a>
+                    <a href="/login" class="btn btn-light ms-4 me-2">Login</a>
                     <a href="/register" class="btn btn-warning">Cadastre-se</a>
                     @endguest
                     
@@ -87,7 +87,7 @@
         </div>
     </main>
 
-    <footer class="text-center text-lg-start bg-dark">
+    <footer class="text-center text-lg-start bg-dark position-absolute col-12">
         <div class="text-muted text-center p-4">
             © 2021 - <a class="text-reset fw-bold" href="#">LaraMovies</a>
         </div>

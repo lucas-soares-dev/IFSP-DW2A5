@@ -17,8 +17,11 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        $movies = Movie::all();
+        $search = request('search');
+        $movies = $search ? Movie::where('name', 'like', "%$search%")->get() : Movie::all();
+
         return view('home', [
+            'search' => $search,
             'movies' => $movies
         ]);
     }

@@ -5,11 +5,12 @@
 @section('content')
 
 <div class="py-5">
+    @auth
     @if (auth()->user()->id == $movie->user_id)
     <div class="owner-options d-flex">
-        <!-- <a class="btn btn-danger" href="/movies/delete/{{ $movie->url }}">
-            Excluir <span class="bi bi-trash3-fill"></span>
-        </a> -->
+        <a class="btn btn-primary mx-2" href="/movies/edit/{{ $movie->url }}">
+            Editar <span class="bi bi-pen"></span>
+        </a>
 
         <form action="/movies/delete/{{ $movie->url }}" method="POST">
             @csrf
@@ -18,15 +19,14 @@
                 Excluir <span class="bi bi-trash3-fill"></span>
             </button>
         </form>
-
-        <a class="btn btn-primary mx-2" href="/movies/edit/{{ $movie->url }}">
-            Editar <span class="bi bi-pen"></span>
-        </a>
     </div>
     @endif
+    @endauth
 
     <div class="infos-movie mt-3">
-        <iframe width="100%" height="500px" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+        @include('layouts.button-to-home')
+
+        <iframe width="100%" height="500px" src="{{ 'https://www.youtube.com/embed/' . explode('v=', $movie->link_trailer)[1] }}"></iframe>
 
         <div class="mt-3">
             <h1>{{ $movie->name }}</h1>
@@ -34,6 +34,7 @@
             <div class="infos-movie-content mt-4">
                 <p><strong>Gêneros:</strong> {{ implode(', ', $movie->genres) }}</p>
                 <p><strong>Ano de Lançamento:</strong> {{ $movie->release_year }}</p>
+                <p><strong>Autor:</strong> {{ $movie->user->name }}</p>
             </div>
         </div>
     </div>
